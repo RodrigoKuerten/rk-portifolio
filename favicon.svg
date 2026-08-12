@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>RK</title>
+  <rect width="64" height="64" rx="14" fill="#0d0c0b"/>
+  <path d="M16 14h7v14l13-14h9L31 30l15 20h-9L25.2 34 23 36.4V50h-7V14Z" fill="#f2efe9"/>
+  <path d="M46 14h4v4h-4zM46 46h4v4h-4z" fill="#ff6a1a"/>
+</svg>
