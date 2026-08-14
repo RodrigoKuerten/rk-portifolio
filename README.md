@@ -10,19 +10,6 @@
     ├── scene.js       # animação 3D (Three.js) dirigida pelo scroll
     └── three.min.js   # biblioteca Three.js (vendor — não editar)
 ```
-## Rodar localmente
-
-Por usar `fetch`/módulos e a lib local, abra via servidor (não pelo `file://`):
-
-```bash
-# dentro da pasta do projeto
-python -m http.server 8080
-# abrir http://localhost:8080
-```
-
-Ou a extensão **Live Server** do VS Code.
-
-## Como mudar as partes principais
 
 ### 1. Cores e tema (tokens)
 Tudo vive em `css/styles.css`, no topo. O tema é controlado por variáveis CSS.
