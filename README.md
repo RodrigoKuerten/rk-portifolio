@@ -67,26 +67,11 @@ group.position.set(2.5, 0, 0);  // posição (direita)
 Para desativar o 3D: remova `<canvas id="scene">` e a tag `<script src="js/scene.js">` do `index.html`.
 
 ### 7. Projetos (galeria de pastas)
-Os projetos ficam em `js/folders.js`, no array `PROJECTS`. Cada item tem `name`, `about` (descrição curta), `stack` (ícones devicon), `repo`, `cover` (print da capa) e `shots` (prints que aparecem dentro da pasta e no lightbox).
+O conteúdo fica no `index.html`, dentro de `#folders`. Cada projeto é um `<div class="folder-item">` com um `.gf-root` marcado por `data-project`. Título (`h3.gf-title`), descrição (`.gf-desc`), stacks (ícones devicon), prints (`.gf-sheet`) e o link do repo (`.gf-repo`) estão no HTML — isso mantém o conteúdo indexável e visível sem JS. O `js/folders.js` só hidrata o comportamento (abrir/fechar, lightbox, medidas e paralaxe).
 
-```js
-{
-  id: "meu-projeto",
-  name: "Meu Projeto",
-  about: "Uma frase sobre o que o projeto faz.",
-  stack: [
-    { name: "Spring Boot", icon: "devicon-spring-plain" },
-    { name: "Angular", icon: "devicon-angular-plain" }
-  ],
-  repo: "https://github.com/RodrigoKuerten/...",
-  cover: "assets/projects/meu-projeto/home.jpg",
-  shots: [
-    { src: "assets/projects/meu-projeto/home.jpg", name: "Home", meta: "Vitrine" }
-  ]
-}
-```
+Para adicionar um projeto, duplique um `.folder-item` inteiro e ajuste `data-project`, o título, a descrição, os ícones, o `href` do `.gf-repo` e os prints (cada `.gf-sheet` na ordem, com `data-shot` e um `<img>` em WebP de ~960 px). Imagens em `assets/projects/<id>/`.
 
-Para adicionar um projeto, copie um bloco e coloque os prints em `assets/projects/<id>/`. A galeria rola na horizontal e a pasta mostra no máximo 5 prints (os últimos do array). Clique na pasta abre, clique num print abre o lightbox.
+A galeria rola na horizontal; a dica “arraste” some sozinha quando as pastas cabem na tela. Clique na pasta abre, clique num print abre o lightbox (clique na imagem dá zoom 2×).
 
 ### 8. Links de contato
 Em `#contact`, atualize os `href` (`mailto:`, GitHub, LinkedIn).

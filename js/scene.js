@@ -90,6 +90,8 @@
 
   var TWO_PI = Math.PI * 2;
   var capFrames = 0;
+  var running = false;
+  var rafId = 0;
 
   function render() {
     scrollN += (target - scrollN) * 0.07;
@@ -109,7 +111,34 @@
     points.material.opacity = 0.5 - scrollN * 0.2;
 
     renderer.render(scene, camera);
-    if (!window.__CAP || capFrames++ < 160) requestAnimationFrame(render);
+    if (running && (!window.__CAP || capFrames++ < 160)) {
+      rafId = requestAnimationFrame(render);
+    } else {
+      running = false;
+      rafId = 0;
+    }
   }
-  render();
+
+  function start() {
+    if (running || reduce) return;
+    running = true;
+    rafId = requestAnimationFrame(render);
+  }
+
+  function stop() {
+    running = false;
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = 0;
+  }
+
+  if (reduce) {
+    render();
+  } else if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) start();
+      else stop();
+    }).observe(canvas);
+  } else {
+    start();
+  }
 })();

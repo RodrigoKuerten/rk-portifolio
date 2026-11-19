@@ -17,7 +17,8 @@
     });
   }
 
-  window.addEventListener("load", function () {
+  // script é defer: o DOM já está pronto, sem esperar imagens/three.js
+  requestAnimationFrame(function () {
     document.querySelectorAll(".hero h1 .ln i").forEach(function (el) {
       if (reduce) { el.style.transform = "none"; return; }
       el.style.transition = "transform .9s cubic-bezier(.22,1,.36,1)";
