@@ -53,6 +53,35 @@
   document.addEventListener("scroll", upd, { passive: true });
   upd();
 
+  // menu mobile (<= 1024px)
+  var navToggle = document.getElementById("nav-toggle");
+  var navLinks = document.getElementById("nav-links");
+  if (nav && navToggle && navLinks) {
+    var setMenu = function (open) {
+      nav.toggleAttribute("data-menu", open);
+      navToggle.setAttribute("aria-expanded", String(open));
+      navToggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    };
+    navToggle.addEventListener("click", function () {
+      setMenu(!nav.hasAttribute("data-menu"));
+    });
+    navLinks.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setMenu(false);
+    });
+    document.addEventListener("pointerdown", function (e) {
+      if (nav.hasAttribute("data-menu") && !nav.contains(e.target)) setMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.hasAttribute("data-menu")) {
+        setMenu(false);
+        navToggle.focus();
+      }
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 1024 && nav.hasAttribute("data-menu")) setMenu(false);
+    }, { passive: true });
+  }
+
   if (!reduce && window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
     var cur = document.createElement("div");
     cur.className = "cursor";
