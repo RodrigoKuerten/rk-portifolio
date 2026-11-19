@@ -66,8 +66,27 @@ group.position.set(2.5, 0, 0);  // posição (direita)
 
 Para desativar o 3D: remova `<canvas id="scene">` e a tag `<script src="js/scene.js">` do `index.html`.
 
-### 7. Projeto em destaque
-Em `#projects`, edite título, descrição, a `.spec` (tabela) e o link do GitHub. Para listar mais projetos, duplique o bloco `<article class="feature">`.
+### 7. Projetos (galeria de pastas)
+Os projetos ficam em `js/folders.js`, no array `PROJECTS`. Cada item tem `name`, `about` (descrição curta), `stack` (ícones devicon), `repo`, `cover` (print da capa) e `shots` (prints que aparecem dentro da pasta e no lightbox).
+
+```js
+{
+  id: "meu-projeto",
+  name: "Meu Projeto",
+  about: "Uma frase sobre o que o projeto faz.",
+  stack: [
+    { name: "Spring Boot", icon: "devicon-spring-plain" },
+    { name: "Angular", icon: "devicon-angular-plain" }
+  ],
+  repo: "https://github.com/RodrigoKuerten/...",
+  cover: "assets/projects/meu-projeto/home.jpg",
+  shots: [
+    { src: "assets/projects/meu-projeto/home.jpg", name: "Home", meta: "Vitrine" }
+  ]
+}
+```
+
+Para adicionar um projeto, copie um bloco e coloque os prints em `assets/projects/<id>/`. A galeria rola na horizontal e a pasta mostra no máximo 5 prints (os últimos do array). Clique na pasta abre, clique num print abre o lightbox.
 
 ### 8. Links de contato
 Em `#contact`, atualize os `href` (`mailto:`, GitHub, LinkedIn).
