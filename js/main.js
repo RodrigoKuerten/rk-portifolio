@@ -41,11 +41,13 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
-  var bar = document.getElementById("progress");
+  var nav = document.querySelector(".nav");
+  var hero = document.querySelector(".hero");
   function upd() {
-    var h = document.documentElement;
-    var max = h.scrollHeight - h.clientHeight;
-    bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + "%";
+    if (nav) {
+      var limit = hero ? hero.offsetHeight * 0.5 : 120;
+      nav.classList.toggle("is-stuck", document.documentElement.scrollTop > limit);
+    }
   }
   document.addEventListener("scroll", upd, { passive: true });
   upd();

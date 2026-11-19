@@ -141,17 +141,6 @@ img {
   mix-blend-mode:var(--grain-blend);
 }
 
-.progress {
-  position:fixed;
-  top:0;
-  left:0;
-  height:2px;
-  width:0;
-  background:var(--accent);
-  z-index:60;
-  transition:width .08s linear;
-}
-
 .cursor {
   position:fixed;
   top:0;
@@ -259,17 +248,37 @@ img {
   position:sticky;
   top:0;
   z-index:50;
-  background:var(--nav-bg);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line-2);
-  transition:background .5s var(--ease);
+  padding-top:0;
+  transition:padding-top .45s var(--ease);
 }
 
 .nav .wrap {
   display:flex;
   align-items:center;
   justify-content:space-between;
+  width:100%;
   height:64px;
+  max-width:100%;
+  background:var(--nav-bg);
+  backdrop-filter:blur(12px);
+  border:1px solid transparent;
+  border-bottom-color:var(--line-2);
+  transition:height .45s var(--ease),width .45s var(--ease),max-width .45s var(--ease),
+    border-radius .45s var(--ease),border-color .45s var(--ease),box-shadow .45s var(--ease),
+    background .5s var(--ease);
+}
+
+.nav.is-stuck {
+  padding-top:12px;
+}
+
+.nav.is-stuck .wrap {
+  width:calc(100% - 24px);
+  max-width:1040px;
+  height:52px;
+  border-color:var(--line-2);
+  border-radius:999px;
+  box-shadow:0 14px 34px -20px rgba(0,0,0,.4);
 }
 
 .brand {
@@ -1933,6 +1942,9 @@ footer a:hover {
 @media(prefers-reduced-motion:reduce) {
   * {
     scroll-behavior:auto!important;
+  }
+  .nav, .nav .wrap {
+    transition:none;
   }
   .marquee-track {
     animation:none;
