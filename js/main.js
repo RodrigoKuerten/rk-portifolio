@@ -123,3 +123,14 @@
     requestAnimationFrame(frame);
   }
 })();
+
+(function () {
+  "use strict";
+  var BIRTH = [2008, 9, 31];
+  var now = new Date();
+  var age = now.getFullYear() - BIRTH[0];
+  if (now.getMonth() < BIRTH[1] || (now.getMonth() === BIRTH[1] && now.getDate() < BIRTH[2])) age--;
+  document.querySelectorAll("[data-age]").forEach(function (el) {
+    el.textContent = age + " anos";
+  });
+})();
