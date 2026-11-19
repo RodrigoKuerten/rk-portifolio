@@ -17,7 +17,8 @@
     });
   }
 
-  window.addEventListener("load", function () {
+  // script é defer: o DOM já está pronto, sem esperar imagens/three.js
+  requestAnimationFrame(function () {
     document.querySelectorAll(".hero h1 .ln i").forEach(function (el) {
       if (reduce) { el.style.transform = "none"; return; }
       el.style.transition = "transform .9s cubic-bezier(.22,1,.36,1)";
@@ -41,14 +42,45 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
-  var bar = document.getElementById("progress");
+  var nav = document.querySelector(".nav");
+  var hero = document.querySelector(".hero");
   function upd() {
-    var h = document.documentElement;
-    var max = h.scrollHeight - h.clientHeight;
-    bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + "%";
+    if (nav) {
+      var limit = hero ? hero.offsetHeight * 0.5 : 120;
+      nav.classList.toggle("is-stuck", document.documentElement.scrollTop > limit);
+    }
   }
   document.addEventListener("scroll", upd, { passive: true });
   upd();
+
+  // menu mobile (<= 1024px)
+  var navToggle = document.getElementById("nav-toggle");
+  var navLinks = document.getElementById("nav-links");
+  if (nav && navToggle && navLinks) {
+    var setMenu = function (open) {
+      nav.toggleAttribute("data-menu", open);
+      navToggle.setAttribute("aria-expanded", String(open));
+      navToggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    };
+    navToggle.addEventListener("click", function () {
+      setMenu(!nav.hasAttribute("data-menu"));
+    });
+    navLinks.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setMenu(false);
+    });
+    document.addEventListener("pointerdown", function (e) {
+      if (nav.hasAttribute("data-menu") && !nav.contains(e.target)) setMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.hasAttribute("data-menu")) {
+        setMenu(false);
+        navToggle.focus();
+      }
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 1024 && nav.hasAttribute("data-menu")) setMenu(false);
+    }, { passive: true });
+  }
 
   if (!reduce && window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
     var cur = document.createElement("div");
@@ -120,4 +152,15 @@
     }
     requestAnimationFrame(frame);
   }
+})();
+
+(function () {
+  "use strict";
+  var BIRTH = [2008, 9, 31];
+  var now = new Date();
+  var age = now.getFullYear() - BIRTH[0];
+  if (now.getMonth() < BIRTH[1] || (now.getMonth() === BIRTH[1] && now.getDate() < BIRTH[2])) age--;
+  document.querySelectorAll("[data-age]").forEach(function (el) {
+    el.textContent = age + " anos";
+  });
 })();

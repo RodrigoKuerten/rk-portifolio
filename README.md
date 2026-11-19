@@ -66,8 +66,12 @@ group.position.set(2.5, 0, 0);  // posição (direita)
 
 Para desativar o 3D: remova `<canvas id="scene">` e a tag `<script src="js/scene.js">` do `index.html`.
 
-### 7. Projeto em destaque
-Em `#projects`, edite título, descrição, a `.spec` (tabela) e o link do GitHub. Para listar mais projetos, duplique o bloco `<article class="feature">`.
+### 7. Projetos (galeria de pastas)
+O conteúdo fica no `index.html`, dentro de `#folders`. Cada projeto é um `<div class="folder-item">` com um `.gf-root` marcado por `data-project`. Título (`h3.gf-title`), descrição (`.gf-desc`), stacks (ícones devicon), prints (`.gf-sheet`) e o link do repo (`.gf-repo`) estão no HTML — isso mantém o conteúdo indexável e visível sem JS. O `js/folders.js` só hidrata o comportamento (abrir/fechar, lightbox, medidas e paralaxe).
+
+Para adicionar um projeto, duplique um `.folder-item` inteiro e ajuste `data-project`, o título, a descrição, os ícones, o `href` do `.gf-repo` e os prints (cada `.gf-sheet` na ordem, com `data-shot` e um `<img>` em WebP de ~960 px). Imagens em `assets/projects/<id>/`.
+
+A galeria rola na horizontal; a dica “arraste” some sozinha quando as pastas cabem na tela. Clique na pasta abre, clique num print abre o lightbox (clique na imagem dá zoom 2×).
 
 ### 8. Links de contato
 Em `#contact`, atualize os `href` (`mailto:`, GitHub, LinkedIn).
