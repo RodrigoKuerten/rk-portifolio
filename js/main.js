@@ -143,7 +143,7 @@
     }, { passive: true });
     function frame(t) {
       var dt = prev ? Math.min(t - prev, 50) : 16; prev = t;
-      var speed = (hover ? base * 0.25 : base) * dt + vel * 0.9;
+      var speed = (hover ? base * 0.25 : base) * dt + Math.min(vel * 0.2, 40);
       x -= speed;
       vel *= 0.86;
       if (half) { while (x <= -half) x += half; while (x > 0) x -= half; }
