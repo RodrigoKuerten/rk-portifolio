@@ -183,7 +183,7 @@
 
     <div class="folders reveal" id="folders" role="region" aria-label="Projetos">
     <div class="folder-item">
-      <div class="gf-root" data-place="bottom-left" data-project="skills-launcher" data-tone="light" style="height: 304px">
+      <div class="gf-root" data-place="bottom-left" data-project="parking" data-tone="light" style="height: 304px">
         <div class="gf-stage" style="transform: scale(1.11765)">
           <div class="gf-tilt">
             <div class="gf-shadow" aria-hidden="true"></div>
@@ -198,9 +198,9 @@
             >
               <img
                 class="gf-art"
-                alt="Skills Launcher — tela inicial"
+                alt="Parking — Dashboard"
                 draggable="false"
-                src="assets/projects/skills-launcher/home.webp"
+                src="assets/projects/parking/dashboard.webp"
                 decoding="async"
               />
               <div class="gf-back-sheen"></div>
@@ -222,7 +222,7 @@
               <div class="gf-spec" aria-hidden="true"></div>
               <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
                 <defs>
-                  <linearGradient id="gf-rim-skills-launcher" x1="0" y1="0" x2="0" y2="1">
+                  <linearGradient id="gf-rim-parking" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0" stop-color="#fff" stop-opacity=".95"></stop>
                     <stop offset=".35" stop-color="#fff" stop-opacity=".35"></stop>
                     <stop offset="1" stop-color="#fff" stop-opacity=".12"></stop>
@@ -230,93 +230,107 @@
                 </defs>
                 <path
                   d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z"
-                  stroke="url(#gf-rim-skills-launcher)"
+                  stroke="url(#gf-rim-parking)"
                 ></path></svg
-              ><button
-                type="button"
-                class="gf-hit"
-                aria-label="Abrir Skills Launcher, 4 prints"
-                aria-expanded="false"
-              ></button>
+              ><button type="button" class="gf-hit" aria-label="Abrir Parking, 5 prints" aria-expanded="false"></button>
               <div class="gf-label">
-                <h3 class="gf-title">Skills Launcher</h3>
-                <span class="gf-desc">Gerenciador de skills para agentes de IA, com instalação, backup e rollback.</span
+                <h3 class="gf-title">Parking</h3>
+                <span class="gf-desc">Gestão de estacionamento com vagas, check-in e check-out, cobrança calculada no servidor e acesso por perfil.</span
                 ><span class="gf-stack"
-                  ><i class="devicon-tauri-plain" title="Tauri" role="img" aria-label="Tauri"></i
-                  ><i class="devicon-react-original" title="React" role="img" aria-label="React"></i
-                  ><i class="devicon-typescript-plain" title="TypeScript" role="img" aria-label="TypeScript"></i
-                  ><i class="devicon-rust-plain" title="Rust" role="img" aria-label="Rust"></i
+                  ><i class="devicon-java-plain" title="Java" role="img" aria-label="Java"></i
+                  ><i class="devicon-spring-plain" title="Spring Boot" role="img" aria-label="Spring Boot"></i
+                  ><i class="devicon-angular-plain" title="Angular" role="img" aria-label="Angular"></i
                   ><i class="devicon-tailwindcss-plain" title="Tailwind CSS" role="img" aria-label="Tailwind CSS"></i
-                  ><i class="devicon-sqlite-plain" title="SQLite" role="img" aria-label="SQLite"></i></span
-                ><a class="gf-repo" href="https://github.com/RodrigoKuerten/skills-launcher" target="_blank" rel="noopener"
+                  ><i class="devicon-mysql-plain" title="MySQL" role="img" aria-label="MySQL"></i></span
+                ><a class="gf-repo" href="https://github.com/RodrigoKuerten/parking-project" target="_blank" rel="noopener"
                   >GitHub <span aria-hidden="true">↗</span></a
                 >
               </div>
             </div>
-            <div class="gf-files" role="list" aria-label="Skills Launcher prints" inert="">
+            <div class="gf-files" role="list" aria-label="Parking prints" inert="">
               <button
                 type="button"
                 class="gf-sheet gf-sheet--art"
                 data-shot="0"
-                style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -3px; --gf-jr: -1.5deg; z-index: 1"
+                style="--gf-slot: -1; --gf-depth: 4; --gf-jx: -3px; --gf-jr: -1.5deg; z-index: 1"
               >
                 <img
                   class="gf-sheet-art"
-                  alt="Skills Launcher — Home"
+                  alt="Parking — Dashboard"
                   draggable="false"
                   decoding="async"
-                  src="assets/projects/skills-launcher/home.webp"
+                  src="assets/projects/parking/dashboard.webp"
                   loading="lazy"
                 /><span class="gf-sheet-head"
-                  ><span class="gf-sheet-name">Home</span><span class="gf-sheet-meta">Início</span></span
-                ></button
-              ><button
+                  ><span class="gf-sheet-name">Dashboard</span><span class="gf-sheet-meta">Visão geral</span></span
+                >
+              </button>
+              <button
                 type="button"
                 class="gf-sheet gf-sheet--art"
                 data-shot="1"
-                style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0px; --gf-jr: 0.6deg; z-index: 2"
+                style="--gf-slot: -0.5; --gf-depth: 3; --gf-jx: 0px; --gf-jr: 0.6deg; z-index: 2"
               >
                 <img
                   class="gf-sheet-art"
-                  alt="Skills Launcher — Explore"
+                  alt="Parking — Check-in"
                   draggable="false"
                   decoding="async"
-                  src="assets/projects/skills-launcher/explore.webp"
+                  src="assets/projects/parking/check-in.webp"
                   loading="lazy"
                 /><span class="gf-sheet-head"
-                  ><span class="gf-sheet-name">Explore</span><span class="gf-sheet-meta">Catálogo</span></span
-                ></button
-              ><button
+                  ><span class="gf-sheet-name">Check-in</span><span class="gf-sheet-meta">Entrada</span></span
+                >
+              </button>
+              <button
                 type="button"
                 class="gf-sheet gf-sheet--art"
                 data-shot="2"
-                style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: 3px; --gf-jr: -0.3deg; z-index: 3"
+                style="--gf-slot: 0; --gf-depth: 2; --gf-jx: 3px; --gf-jr: -0.3deg; z-index: 3"
               >
                 <img
                   class="gf-sheet-art"
-                  alt="Skills Launcher — Library"
+                  alt="Parking — Pátio"
                   draggable="false"
                   decoding="async"
-                  src="assets/projects/skills-launcher/library.webp"
+                  src="assets/projects/parking/yard.webp"
                   loading="lazy"
                 /><span class="gf-sheet-head"
-                  ><span class="gf-sheet-name">Library</span><span class="gf-sheet-meta">Instaladas</span></span
-                ></button
-              ><button
+                  ><span class="gf-sheet-name">Pátio</span><span class="gf-sheet-meta">Sessões abertas</span></span
+                >
+              </button>
+              <button
                 type="button"
                 class="gf-sheet gf-sheet--art"
                 data-shot="3"
-                style="--gf-slot: 1; --gf-depth: 0; --gf-jx: -1px; --gf-jr: -1.2deg; z-index: 4"
+                style="--gf-slot: 0.5; --gf-depth: 1; --gf-jx: -1px; --gf-jr: -1.2deg; z-index: 4"
               >
                 <img
                   class="gf-sheet-art"
-                  alt="Skills Launcher — Settings"
+                  alt="Parking — Vagas"
                   draggable="false"
                   decoding="async"
-                  src="assets/projects/skills-launcher/settings.webp"
+                  src="assets/projects/parking/spots.webp"
                   loading="lazy"
                 /><span class="gf-sheet-head"
-                  ><span class="gf-sheet-name">Settings</span><span class="gf-sheet-meta">Ajustes</span></span
+                  ><span class="gf-sheet-name">Vagas</span><span class="gf-sheet-meta">Mapa do lote</span></span
+                >
+              </button>
+              <button
+                type="button"
+                class="gf-sheet gf-sheet--art"
+                data-shot="4"
+                style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 2px; --gf-jr: 0.9deg; z-index: 5"
+              >
+                <img
+                  class="gf-sheet-art"
+                  alt="Parking — Tarifas"
+                  draggable="false"
+                  decoding="async"
+                  src="assets/projects/parking/pricing.webp"
+                  loading="lazy"
+                /><span class="gf-sheet-head"
+                  ><span class="gf-sheet-name">Tarifas</span><span class="gf-sheet-meta">Cobrança</span></span
                 >
               </button>
             </div>
@@ -470,6 +484,148 @@
                   loading="lazy"
                 /><span class="gf-sheet-head"
                   ><span class="gf-sheet-name">Login</span><span class="gf-sheet-meta">Conta</span></span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="folder-item">
+      <div class="gf-root" data-place="bottom-left" data-project="skills-launcher" data-tone="light" style="height: 304px">
+        <div class="gf-stage" style="transform: scale(1.11765)">
+          <div class="gf-tilt">
+            <div class="gf-shadow" aria-hidden="true"></div>
+            <div
+              class="gf-back"
+              aria-hidden="true"
+              style="
+                clip-path: path(
+                  &quot;M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z&quot;
+                );
+              "
+            >
+              <img
+                class="gf-art"
+                alt="Skills Launcher — tela inicial"
+                draggable="false"
+                src="assets/projects/skills-launcher/home.webp"
+                decoding="async"
+              />
+              <div class="gf-back-sheen"></div>
+            </div>
+            <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
+              <path
+                d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z"
+              ></path>
+            </svg>
+            <div
+              class="gf-front"
+              style="
+                clip-path: path(
+                  &quot;M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z&quot;
+                );
+              "
+            >
+              <div class="gf-tint" aria-hidden="true"></div>
+              <div class="gf-spec" aria-hidden="true"></div>
+              <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
+                <defs>
+                  <linearGradient id="gf-rim-skills-launcher" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#fff" stop-opacity=".95"></stop>
+                    <stop offset=".35" stop-color="#fff" stop-opacity=".35"></stop>
+                    <stop offset="1" stop-color="#fff" stop-opacity=".12"></stop>
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z"
+                  stroke="url(#gf-rim-skills-launcher)"
+                ></path></svg
+              ><button
+                type="button"
+                class="gf-hit"
+                aria-label="Abrir Skills Launcher, 4 prints"
+                aria-expanded="false"
+              ></button>
+              <div class="gf-label">
+                <h3 class="gf-title">Skills Launcher</h3>
+                <span class="gf-desc">Gerenciador de skills para agentes de IA, com instalação, backup e rollback.</span
+                ><span class="gf-stack"
+                  ><i class="devicon-tauri-plain" title="Tauri" role="img" aria-label="Tauri"></i
+                  ><i class="devicon-react-original" title="React" role="img" aria-label="React"></i
+                  ><i class="devicon-typescript-plain" title="TypeScript" role="img" aria-label="TypeScript"></i
+                  ><i class="devicon-rust-plain" title="Rust" role="img" aria-label="Rust"></i
+                  ><i class="devicon-tailwindcss-plain" title="Tailwind CSS" role="img" aria-label="Tailwind CSS"></i
+                  ><i class="devicon-sqlite-plain" title="SQLite" role="img" aria-label="SQLite"></i></span
+                ><a class="gf-repo" href="https://github.com/RodrigoKuerten/skills-launcher" target="_blank" rel="noopener"
+                  >GitHub <span aria-hidden="true">↗</span></a
+                >
+              </div>
+            </div>
+            <div class="gf-files" role="list" aria-label="Skills Launcher prints" inert="">
+              <button
+                type="button"
+                class="gf-sheet gf-sheet--art"
+                data-shot="0"
+                style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -3px; --gf-jr: -1.5deg; z-index: 1"
+              >
+                <img
+                  class="gf-sheet-art"
+                  alt="Skills Launcher — Home"
+                  draggable="false"
+                  decoding="async"
+                  src="assets/projects/skills-launcher/home.webp"
+                  loading="lazy"
+                /><span class="gf-sheet-head"
+                  ><span class="gf-sheet-name">Home</span><span class="gf-sheet-meta">Início</span></span
+                ></button
+              ><button
+                type="button"
+                class="gf-sheet gf-sheet--art"
+                data-shot="1"
+                style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0px; --gf-jr: 0.6deg; z-index: 2"
+              >
+                <img
+                  class="gf-sheet-art"
+                  alt="Skills Launcher — Explore"
+                  draggable="false"
+                  decoding="async"
+                  src="assets/projects/skills-launcher/explore.webp"
+                  loading="lazy"
+                /><span class="gf-sheet-head"
+                  ><span class="gf-sheet-name">Explore</span><span class="gf-sheet-meta">Catálogo</span></span
+                ></button
+              ><button
+                type="button"
+                class="gf-sheet gf-sheet--art"
+                data-shot="2"
+                style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: 3px; --gf-jr: -0.3deg; z-index: 3"
+              >
+                <img
+                  class="gf-sheet-art"
+                  alt="Skills Launcher — Library"
+                  draggable="false"
+                  decoding="async"
+                  src="assets/projects/skills-launcher/library.webp"
+                  loading="lazy"
+                /><span class="gf-sheet-head"
+                  ><span class="gf-sheet-name">Library</span><span class="gf-sheet-meta">Instaladas</span></span
+                ></button
+              ><button
+                type="button"
+                class="gf-sheet gf-sheet--art"
+                data-shot="3"
+                style="--gf-slot: 1; --gf-depth: 0; --gf-jx: -1px; --gf-jr: -1.2deg; z-index: 4"
+              >
+                <img
+                  class="gf-sheet-art"
+                  alt="Skills Launcher — Settings"
+                  draggable="false"
+                  decoding="async"
+                  src="assets/projects/skills-launcher/settings.webp"
+                  loading="lazy"
+                /><span class="gf-sheet-head"
+                  ><span class="gf-sheet-name">Settings</span><span class="gf-sheet-meta">Ajustes</span></span
                 >
               </button>
             </div>

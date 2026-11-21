@@ -1055,18 +1055,25 @@ section {
   overflow-y:hidden;
   scroll-snap-type:x proximity;
   overscroll-behavior-x:contain;
-  scrollbar-width:thin;
-  scrollbar-color:var(--n-400) transparent;
+  scrollbar-width:none;
+  /* as bordas da tela somem em degradê, sem cortar a pasta no meio */
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 clamp(12px,3vw,40px),#000 calc(100% - clamp(12px,3vw,40px)),transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 clamp(12px,3vw,40px),#000 calc(100% - clamp(12px,3vw,40px)),transparent 100%);
   transition:padding-top .6s var(--ease),margin-top .6s var(--ease);
 }
 
 .folders::-webkit-scrollbar {
-  height:5px;
+  display:none;
 }
 
-.folders::-webkit-scrollbar-thumb {
-  background:var(--n-400);
-  border-radius:99px;
+.folders.is-loop {
+  scroll-snap-type:none;
+}
+
+.folders.is-dragging {
+  cursor:grabbing;
+  user-select:none;
+  scroll-snap-type:none;
 }
 
 .folder-item {
