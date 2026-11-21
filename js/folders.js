@@ -58,6 +58,56 @@
     rail.classList.toggle("no-scroll", noScroll);
   }
 
+  // ---- carrossel infinito: blocos [clones | originais | clones]; a posição fica no bloco do meio
+  var orig = Array.prototype.slice.call(rail.children);
+  var lead = [];
+  var trail = [];
+  var loopOn = false;
+
+  function cloneFolder(el, n) {
+    var c = el.cloneNode(true);
+    c.classList.add("is-clone");
+    c.setAttribute("aria-hidden", "true");
+    // clones precisam receber clique (inert bloqueia); fora da tabulação para não duplicar o foco
+    c.querySelectorAll("button, a").forEach(function (x) { x.setAttribute("tabindex", "-1"); });
+    c.querySelectorAll("[id]").forEach(function (x) { x.id = x.id + "-c" + n; });
+    c.querySelectorAll("*").forEach(function (x) {
+      Array.prototype.forEach.call(x.attributes, function (a) {
+        if (a.value.indexOf("#gf-rim-") >= 0) {
+          x.setAttribute(a.name, a.value.replace(/#(gf-rim-[\w-]+)/g, "#$1-c" + n));
+        }
+      });
+    });
+    return c;
+  }
+
+  if (orig.length && orig[orig.length - 1].getBoundingClientRect().right - orig[0].getBoundingClientRect().left > rail.clientWidth) {
+    loopOn = true;
+    rail.classList.add("is-loop"); // snap puxa a roda de volta para a pasta mais próxima
+    lead =orig.map(function (el) { return cloneFolder(el, 1); });
+    trail = orig.map(function (el) { return cloneFolder(el, 2); });
+    lead.forEach(function (c) { rail.insertBefore(c, orig[0]); });
+    trail.forEach(function (c) { rail.appendChild(c); });
+  }
+
+  // distância entre dois blocos iguais (independe do scroll)
+  function blockWidth() {
+    return orig[0].getBoundingClientRect().left - lead[0].getBoundingClientRect().left;
+  }
+
+  // devolve a posição para o bloco do meio; ajusta o arraste em andamento
+  function recenter() {
+    if (!loopOn) return;
+    var w = blockWidth();
+    if (!w) return;
+    var before = rail.scrollLeft;
+    if (before >= w && before < 2 * w) return;
+    var r = (before - w) % w;
+    if (r < 0) r += w;
+    rail.scrollLeft = w + r;
+    if (drag) drag.left += rail.scrollLeft - before;
+  }
+
   Array.prototype.forEach.call(rail.querySelectorAll(".gf-root"), function (root, index) {
     var title = root.querySelector(".gf-title").textContent.trim();
     var filesEl = root.querySelector(".gf-files");
@@ -75,14 +125,20 @@
       });
     });
 
+    // cópias do loop abrem/fecham junto com a original (mesmo grupo)
+    root.dataset.group = String(index % Math.max(1, orig.length || 1));
+    var group = function () {
+      return Array.prototype.slice.call(rail.querySelectorAll('.gf-root[data-group="' + root.dataset.group + '"]'));
+    };
+
     hit.addEventListener("click", function () {
-      if (root.hasAttribute("data-open")) closeFolder(root);
-      else openFolder(root);
+      var open = root.hasAttribute("data-open");
+      group().forEach(function (r) { if (open) closeFolder(r); else openFolder(r); });
     });
 
     root.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && root.hasAttribute("data-open")) {
-        closeFolder(root);
+        group().forEach(closeFolder);
         hit.focus();
       }
     });
@@ -121,11 +177,67 @@
   window.addEventListener("themechange", applyTone);
   window.addEventListener("resize", updateHint, { passive: true });
 
+  // barra oculta: roda do mouse vira rolagem horizontal enquanto a rail tiver para onde ir
+  rail.addEventListener("wheel", function (e) {
+    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+    if (!loopOn) {
+      var max = rail.scrollWidth - rail.clientWidth;
+      var next = rail.scrollLeft + e.deltaY;
+      if (max <= 0 || (e.deltaY < 0 && rail.scrollLeft <= 0) || (e.deltaY > 0 && rail.scrollLeft >= max)) return;
+      e.preventDefault();
+      rail.scrollLeft = Math.max(0, Math.min(max, next));
+      return;
+    }
+    // em loop não há ponta: a roda sempre rola a galeria
+    e.preventDefault();
+    rail.scrollLeft += e.deltaY;
+    recenter();
+  }, { passive: false });
+
+  rail.addEventListener("scroll", recenter, { passive: true });
+  window.addEventListener("resize", recenter, { passive: true });
+  if (loopOn) rail.scrollLeft = blockWidth();
+
+  // arrastar com o mouse (o hint "arraste" promete isso); clique só dispara se não houve arraste
+  var drag = null;
+  rail.addEventListener("pointerdown", function (e) {
+    delete rail.dataset.justDragged; // um clique novo nunca herda o arraste anterior
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    drag = { x: e.clientX, left: rail.scrollLeft, moved: false };
+  });
+  window.addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    var dx = e.clientX - drag.x;
+    if (!drag.moved && Math.abs(dx) < 5) return;
+    if (!drag.moved) {
+      drag.moved = true;
+      rail.classList.add("is-dragging");
+    }
+    rail.scrollLeft = drag.left - dx;
+    recenter();
+  });
+  window.addEventListener("pointerup", function () {
+    if (!drag) return;
+    var moved = drag.moved;
+    drag = null;
+    rail.classList.remove("is-dragging");
+    if (moved) rail.dataset.justDragged = "1";
+  });
+  rail.addEventListener("click", function (e) {
+    if (rail.dataset.justDragged) {
+      delete rail.dataset.justDragged;
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+
   // fecha pastas abertas ao clicar fora (o lightbox é tratado à parte)
   document.addEventListener("pointerdown", function (e) {
     if (lb && lb.contains(e.target)) return;
+    var inside = e.target.closest ? e.target.closest(".gf-root") : null;
+    var keep = inside ? inside.dataset.group : null;
     openRoots.slice().forEach(function (root) {
-      if (!root.contains(e.target)) closeFolder(root);
+      if (!root.contains(e.target) && root.dataset.group !== keep) closeFolder(root);
     });
   });
 
